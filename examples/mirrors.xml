@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource type="MIRRORS" pluginName="公共镜像源">
+  <mirrors>
+    <mirror>
+      <name>ghproxy</name>
+      <urlTemplate>https://ghproxy.com{path}</urlTemplate>
+      <siteType>replace</siteType>
+      <priority>10</priority>
+      <isOfficial>false</isOfficial>
+    </mirror>
+    <mirror>
+      <name>mirror.example.com</name>
+      <urlTemplate>https://mirror.example.com/?url={github_url}</urlTemplate>
+      <siteType>prefix</siteType>
+      <priority>5</priority>
+      <isOfficial>false</isOfficial>
+    </mirror>
+  </mirrors>
+</dataSource>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource type="THEMES" pluginName="主题合集">
+  <themes>
+    <theme>
+      <title>效率工具合集</title>
+      <subtitle>提升生产力的必备应用</subtitle>
+      <cover>https://example.com/theme.jpg</cover>
+      <appId>com.example.app</appId>
+      <appId>com.example.app2</appId>
+    </theme>
+  </themes>
+</dataSource>

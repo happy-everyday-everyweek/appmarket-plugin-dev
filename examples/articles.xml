@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource type="ARTICLES" pluginName="精选文章">
+  <articles>
+    <article>
+      <type>ARTICLE</type>
+      <title>开源应用推荐</title>
+      <summary>本期推荐 5 款优秀开源应用</summary>
+      <content><![CDATA[
+# 开源应用推荐
+
+以下是本期推荐的 **5 款** 优秀开源应用：
+
+1. 示例应用 - 工具类
+2. 另一个应用 - 效率类
+
+> [!NOTE]
+所有应用均可通过镜像站加速下载
+      ]]></content>
+      <cover>https://example.com/cover.jpg</cover>
+      <appId>com.example.app</appId>
+      <tag>推荐</tag>
+    </article>
+  </articles>
+</dataSource>

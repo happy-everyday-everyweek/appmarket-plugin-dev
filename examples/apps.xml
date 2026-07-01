@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource type="APPS" pluginName="开源应用源">
+  <apps>
+    <app>
+      <name>示例应用</name>
+      <packageName>com.example.app</packageName>
+      <githubRepo>owner/repo</githubRepo>
+      <category>OPENSOURCE</category>
+      <description>一个示例开源应用</description>
+      <tags>
+        <tag>工具</tag>
+        <tag>开源</tag>
+      </tags>
+    </app>
+    <app>
+      <name>另一个应用</name>
+      <packageName>com.example.app2</packageName>
+      <githubRepo>owner/repo2</githubRepo>
+      <category>OPENSOURCE</category>
+      <description>另一个开源应用</description>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+    </app>
+  </apps>
+</dataSource>

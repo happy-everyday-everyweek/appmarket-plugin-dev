@@ -1,0 +1,10 @@
+{
+  "name": "公共镜像源",
+  "packageName": "com.example.publicmirrors",
+  "version": "1.0.0",
+  "minAppVersion": "0.5.0",
+  "type": "XML_DATA_SOURCE",
+  "entry": "mirrors.xml",
+  "description": "提供 ghproxy 等公共 GitHub 镜像站",
+  "author": "example"
+}
