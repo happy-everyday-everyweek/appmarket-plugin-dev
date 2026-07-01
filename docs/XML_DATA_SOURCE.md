@@ -44,6 +44,7 @@ XML 数据源插件通过 XML 文件向应用市场添加数据。根节点 `<da
 | `category` | 是 | 分类，取值 `OPENSOURCE` / `GENUINE` / `NATURAL` |
 | `description` | 是 | 应用描述 |
 | `tag` | 否 | 标签，可多个 |
+| `schedule` | 否 | 定时出现计划，详见下方「定时出现」 |
 
 ## 2. MIRRORS — 镜像站列表
 
@@ -121,6 +122,7 @@ XML 数据源插件通过 XML 文件向应用市场添加数据。根节点 `<da
 | `cover` | 否 | 封面图 URL |
 | `appId` | 否 | 关联应用 ID，可多个 |
 | `tag` | 否 | 标签，可多个 |
+| `schedule` | 否 | 定时出现计划，详见下方「定时出现」 |
 
 ## 4. THEMES — 主题合集
 
@@ -149,8 +151,95 @@ XML 数据源插件通过 XML 文件向应用市场添加数据。根节点 `<da
 | `subtitle` | 否 | 副标题 |
 | `cover` | 否 | 封面图 URL |
 | `appId` | 否 | 包含的应用 ID，可多个 |
+| `schedule` | 否 | 定时出现计划，详见下方「定时出现」 |
 
-## 运行时消费
+## 5. 定时出现（schedule）
+
+`app` / `article` / `theme` 均可附加 `<schedule>` 子节点，控制卡片在信息流中何时出现，实现「每日推送」「工作日特推」「限时活动」等效果。
+
+### 5.1 schedule 字段
+
+| 字段 | 必需 | 说明 |
+|------|------|------|
+| `startDate` | 否 | 起始日期 `YYYY-MM-DD`（含）。未设置则无起始限制 |
+| `endDate` | 否 | 结束日期 `YYYY-MM-DD`（含）。未设置则无结束限制 |
+| `dayOfWeek` | 否 | 仅在每周指定星期出现，逗号分隔 `1`-`7`，1=周一、7=周日。未设置则不限星期 |
+| `featuredDate` | 否 | 「每日推送」指定日期 `YYYY-MM-DD`（含），仅在该天出现。设此项后 startDate / endDate / dayOfWeek 不再生效 |
+
+### 5.2 可见性规则
+
+应用在每次刷新信息流时，对每个带 `schedule` 的条目计算可见性：
+
+1. 若设置 `featuredDate`：仅当 `当前日期 == featuredDate` 时可见，其他日期隐藏
+2. 否则：
+   - 若设置 `startDate` 且 `当前日期 < startDate` → 隐藏
+   - 若设置 `endDate` 且 `当前日期 > endDate` → 隐藏
+   - 若设置 `dayOfWeek` 且 `当前星期不在列表` → 隐藏
+   - 其余情况可见
+
+未设置 `<schedule>` 的条目始终可见。
+
+> 日期按设备本地时区计算，使用 `LocalDate.now()`。星期映射：周一=1，周二=2，...，周日=7（ISO-8601）。
+
+### 5.3 示例：每日推送
+
+```xml
+<dataSource type="ARTICLES" pluginName="每日推送">
+  <articles>
+    <article>
+      <type>RECOMMEND</type>
+      <title>2026-07-15 今日推荐</title>
+      <summary>本期推荐 3 款应用</summary>
+      <content><![CDATA[# 今日推荐...]]></content>
+      <appId>com.example.app1</appId>
+      <schedule>
+        <featuredDate>2026-07-15</featuredDate>
+      </schedule>
+    </article>
+  </articles>
+</dataSource>
+```
+
+该文章仅在 2026-07-15 当天出现在信息流中。
+
+### 5.4 示例：工作日特推
+
+```xml
+<dataSource type="APPS" pluginName="工作日开源应用">
+  <apps>
+    <app>
+      <name>生产力工具</name>
+      <packageName>com.example.tool</packageName>
+      <githubRepo>example/tool</githubRepo>
+      <category>OPENSOURCE</category>
+      <description>工作日每天推荐</description>
+      <schedule>
+        <dayOfWeek>1,2,3,4,5</dayOfWeek>
+      </schedule>
+    </app>
+  </apps>
+</dataSource>
+```
+
+该应用仅在周一至周五出现。
+
+### 5.5 示例：限时活动
+
+```xml
+<theme>
+  <title>春节精选</title>
+  <cover>https://example.com/spring.jpg</cover>
+  <appId>com.example.app1</appId>
+  <schedule>
+    <startDate>2026-02-08</startDate>
+    <endDate>2026-02-22</endDate>
+  </schedule>
+</theme>
+```
+
+该主题仅在 2026-02-08 至 2026-02-22 期间出现。
+
+## 6. 运行时消费
 
 安装插件后，各数据源类型在应用内的运行时行为如下：
 
@@ -159,10 +248,11 @@ XML 数据源插件通过 XML 文件向应用市场添加数据。根节点 `<da
 | `MIRRORS` | 是 | 已安装插件提供的镜像站会合并进应用运行时镜像站列表，与后端镜像站一起参与下载测速与优选。镜像站 ID 形如 `插件包名:镜像站名`，与后端 ID 不冲突。卸载插件后其镜像站随之移除。 |
 | `APPS` / `ARTICLES` / `THEMES` | 否（仅展示计数） | 当前为基础设施阶段，这三类数据源解析后仅在插件管理页展示条目数量，尚未注入信息流 / 详情等业务 UI。后续版本将接入。 |
 
-> 安装镜像站插件是扩展下载通道的推荐方式：无需改动后端，用户本地安装即可生效。
+> schedule 字段已实现解析，待 APPS / ARTICLES / THEMES 数据接入信息流后自动生效。
 
-## 解析容错
+## 7. 解析容错
 
 - 单个条目解析失败不影响其他条目，失败会在日志记录，解析器会跳到当前节点结束标签恢复状态继续解析后续节点
 - 缺失字段使用默认值（如 `category` 缺省 `OPENSOURCE`，`siteType` 缺省 `replace`，`priority` 缺省 0）
 - 枚举值大小写不敏感（如 `opensource` 与 `OPENSOURCE` 等价）
+- `dayOfWeek` 解析时忽略空格，非法数字忽略（如 `1, ,9` 中的 `9` 被忽略）
