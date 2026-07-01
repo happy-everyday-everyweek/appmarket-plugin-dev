@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 工作日特推示例：仅周一至周五出现 -->
+<dataSource type="APPS" pluginName="工作日开源应用">
+  <apps>
+    <app>
+      <name>生产力工具</name>
+      <packageName>com.example.tool</packageName>
+      <githubRepo>example/tool</githubRepo>
+      <category>OPENSOURCE</category>
+      <description>工作日每天推荐</description>
+      <schedule>
+        <dayOfWeek>1,2,3,4,5</dayOfWeek>
+      </schedule>
+    </app>
+  </apps>
+</dataSource>

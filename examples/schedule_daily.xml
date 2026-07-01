@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 每日推送示例：仅在 2026-07-15 出现的推荐文章 -->
+<dataSource type="ARTICLES" pluginName="每日推送">
+  <articles>
+    <article>
+      <type>RECOMMEND</type>
+      <title>2026-07-15 今日推荐</title>
+      <summary>本期推荐 3 款效率工具</summary>
+      <content><![CDATA[
+# 今日推荐
+
+本期推荐 3 款效率工具...
+      ]]></content>
+      <appId>com.example.app1</appId>
+      <schedule>
+        <featuredDate>2026-07-15</featuredDate>
+      </schedule>
+    </article>
+  </articles>
+</dataSource>

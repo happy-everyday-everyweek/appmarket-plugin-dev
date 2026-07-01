@@ -1,0 +1,12 @@
+{
+  "name": "收藏夹",
+  "packageName": "com.example.favorites",
+  "version": "1.0.0",
+  "minAppVersion": "0.5.0",
+  "type": "JAVA",
+  "entry": "plugin.jar",
+  "entryClass": "com.example.favorites.FavoritesPlugin",
+  "permissions": ["LOCAL_STORAGE", "REGISTER_ENTRY", "READ_PUBLIC_APPS"],
+  "description": "本地收藏应用，无网络",
+  "author": "example"
+}

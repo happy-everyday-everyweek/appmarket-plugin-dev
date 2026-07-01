@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 限时活动示例：仅在指定日期区间出现 -->
+<dataSource type="THEMES" pluginName="节日精选">
+  <themes>
+    <theme>
+      <title>春节精选</title>
+      <subtitle>2026 春节应用推荐</subtitle>
+      <cover>https://example.com/spring.jpg</cover>
+      <appId>com.example.app1</appId>
+      <schedule>
+        <startDate>2026-02-08</startDate>
+        <endDate>2026-02-22</endDate>
+      </schedule>
+    </theme>
+  </themes>
+</dataSource>
