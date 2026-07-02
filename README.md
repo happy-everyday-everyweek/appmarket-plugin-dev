@@ -37,8 +37,10 @@
 ## 文档目录
 
 - [docs/PLUGIN_SPEC.md](docs/PLUGIN_SPEC.md) — 完整插件规范（plugin.json 字段、加载流程）
-- [docs/XML_DATA_SOURCE.md](docs/XML_DATA_SOURCE.md) — XML 数据源详细规范（含 schedule 定时出现）
-- [docs/JAVA_PLUGIN.md](docs/JAVA_PLUGIN.md) — Java 插件开发指南（含权限边界、收藏夹示例）
+- [docs/XML_DATA_SOURCE.md](docs/XML_DATA_SOURCE.md) — XML 数据源详细规范（节点结构、字段说明）
+- [docs/XML_SCHEDULE.md](docs/XML_SCHEDULE.md) — XML 插件定时卡片（schedule 字段：每日推送 / 日期范围 / 周期性出现）
+- [docs/JAVA_PLUGIN.md](docs/JAVA_PLUGIN.md) — Java 插件开发指南（权限边界、openPage、视图扩展、GitHub 分发）
+- [docs/AGENT.md](docs/AGENT.md) — 项目架构权威参考（技术栈、目录结构、插件系统、安全边界、全仓审计流程）
 
 ## 示例
 
