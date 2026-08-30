@@ -1,6 +1,6 @@
 # XML 数据源规范
 
-XML 数据源插件通过 XML 文件向应用市场添加数据。根节点 `<dataSource>` 的 `type` 属性决定数据源类型，`pluginName` 属性为可选展示名。
+XML 数据源插件通过 XML 文件向 Only 添加数据。根节点 `<dataSource>` 的 `type` 属性决定数据源类型，`pluginName` 属性为可选展示名。
 
 ## 通用结构
 

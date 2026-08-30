@@ -108,7 +108,7 @@ interface PluginContext {
     // 2. 注册设置页入口（需 REGISTER_ENTRY）
     fun registerEntry(label: String, onClick: () -> Unit)
 
-    // 3. 读取应用市场公开应用列表只读快照（需 READ_PUBLIC_APPS）
+    // 3. 读取 Only 公开应用列表只读快照（需 READ_PUBLIC_APPS）
     fun getPublicApps(): List<PublicApp>
 
     // 4. 打开宿主指定页面（需 OPEN_PAGE）

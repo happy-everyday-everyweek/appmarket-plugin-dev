@@ -4,7 +4,7 @@ import com.appmarket.blog.plugin.sdk.JavaPlugin
 import com.appmarket.blog.plugin.sdk.PluginContext
 
 /**
- * 收藏夹插件示例：本地收藏应用市场内的应用，不发起任何网络请求。
+ * 收藏夹插件示例：本地收藏 Only 内的应用，不发起任何网络请求。
  */
 class FavoritesPlugin : JavaPlugin {
     private lateinit var ctx: PluginContext
